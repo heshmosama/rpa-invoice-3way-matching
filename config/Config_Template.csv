@@ -1,0 +1,9 @@
+Key,Value
+OCR_Confidence_Threshold,0.85
+Approval_Reminder_Hours,24
+Finance_Escalation_Hours,48
+Urgent_Escalation_Hours,72
+PM_Email,pm@example.com
+Finance_Manager_Email,finance.manager@example.com
+CFO_Email,cfo@example.com
+Currency,EGP

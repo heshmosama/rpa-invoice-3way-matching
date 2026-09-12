@@ -1,0 +1,15 @@
+﻿Order,File,Invoice_Reference,Supplier_Number,PO_Number,Scenario,Expected_Result,Test_Action
+1,01_RG_Clean_Match_INV-RG-101.pdf,INV-RG-101,S-1001,PO-TEST-001,MATCHED - baseline,MATCHED / Pending PM Approval,Send once. Do not seed Existing_Invoices.
+2,02_RG_Qty_Mismatch_INV-RG-102.pdf,INV-RG-102,S-1002,PO-TEST-002,Quantity mismatch,EXCEPTION / Qty Mismatch / PM,"PO qty=12 but GRN qty=10, so this should fail quantity match."
+3,03_RG_Price_Mismatch_INV-RG-103.pdf,INV-RG-103,S-1003,PO-TEST-003,Price mismatch,EXCEPTION / Price Mismatch / PM,PO unit price=2000; invoice unit price=2200.
+4,04_RG_Missing_GRN_INV-RG-104.pdf,INV-RG-104,S-1004,PO-TEST-004,Missing GRN,EXCEPTION / Missing GRN / Warehouse,PO exists; GRN for PO-TEST-004 must remain absent.
+5,05_RG_Missing_PO_INV-RG-105.pdf,INV-RG-105,S-1999,PO-RG-999,Missing PO,EXCEPTION / Missing PO / PM,PO-RG-999 must NOT be added to PO_Data.
+6,06_RG_ERP_Duplicate_INV-RG-106.pdf,INV-RG-106,S-1006,PO-TEST-006,ERP duplicate,EXCEPTION / Duplicate / FC,"Before running, seed Existing_Invoices with INV-RG-106."
+7,07_RG_Calc_Error_INV-RG-107.pdf,INV-RG-107,S-1007,PO-TEST-007,Calculation error,EXCEPTION / Calc Error / PM,"4 x 1500 = 6000, but Invoice Amount is deliberately 6500."
+8,08_RG_Approval_Reject_INV-RG-108.pdf,INV-RG-108,S-1008,PO-TEST-008,Matched then PM rejects,MATCHED -> Pending -> Rejected,"When approval email arrives, click Reject. Expect Rejected-Invoices and Not Ready."
+9,09_RG_Approval_Approve_INV-RG-109.pdf,INV-RG-109,S-1006,PO-TEST-006,Matched then PM approves,MATCHED -> Pending -> Approved / Ready for Payment,"When approval email arrives, click Approve. Expect Processed-Invoices and Ready for Payment."
+10,10_RG_RPA_Duplicate_INV-RG-110.pdf,INV-RG-110,S-1001,PO-TEST-001,RPA duplicate,First run MATCHED; second run EXCEPTION / Duplicate / FC,Send this exact PDF twice. Keep first RPA_Live_Output row before second send.
+11,11_RG_SameRef_DifferentSupplier_A.pdf,INV-RG-SHARED-111,S-1001,PO-TEST-001,Same invoice ref - supplier A,MATCHED / Pending PM Approval,Run before case 12 and keep its live-output row.
+12,12_RG_SameRef_DifferentSupplier_B.pdf,INV-RG-SHARED-111,S-1002,PO-TEST-002,Same invoice ref - different supplier,NOT duplicate; then EXCEPTION / Qty Mismatch / PM,Same reference as case 11 but S-1002. Should not be RPA duplicate; then GRN qty 10 causes Qty Mismatch.
+13,Special_ProcessID_ReusedFilename/Run_A/Repeated_Name_Invoice.pdf,INV-RG-PID-201,S-1001,PO-TEST-001,Process_ID stale-map regression - Run A,MATCHED -> approve -> Processed,Complete and approve Run A first.
+14,Special_ProcessID_ReusedFilename/Run_B/Repeated_Name_Invoice.pdf,INV-RG-PID-202,S-1006,PO-TEST-006,Process_ID stale-map regression - Run B,MATCHED; approval email must point to Run B file,"Send after Run A. Same filename, different invoice ref/process ID."

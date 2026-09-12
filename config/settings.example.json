@@ -1,0 +1,29 @@
+{
+  "uipath": {
+    "templateName": "RPA - Invoice Intake & 3-Way Matching",
+    "distribution": "UiPath Studio Web Template",
+    "connections": {
+      "gmail": "CONFIGURE_YOUR_OWN_UIPATH_CONNECTION",
+      "googleDrive": "CONFIGURE_YOUR_OWN_UIPATH_CONNECTION",
+      "googleSheets": "CONFIGURE_YOUR_OWN_UIPATH_CONNECTION",
+      "openAI": "CONFIGURE_YOUR_OWN_UIPATH_CONNECTION"
+    }
+  },
+  "google": {
+    "spreadsheetName": "RPA_3Way_Data",
+    "spreadsheetId": "YOUR_SPREADSHEET_ID",
+    "driveRootFolder": "RPA-Invoice-Matching",
+    "folders": {
+      "data": "YOUR_DATA_FOLDER_ID",
+      "incomingInvoices": "YOUR_INCOMING_INVOICES_FOLDER_ID",
+      "pendingApproval": "YOUR_PENDING_APPROVAL_FOLDER_ID",
+      "exceptions": "YOUR_EXCEPTIONS_FOLDER_ID",
+      "processedInvoices": "YOUR_PROCESSED_INVOICES_FOLDER_ID",
+      "rejectedInvoices": "YOUR_REJECTED_INVOICES_FOLDER_ID"
+    }
+  },
+  "appsScript": {
+    "webAppUrl": "YOUR_DEPLOYED_WEB_APP_EXEC_URL",
+    "approvalScanMinutes": 5
+  }
+}
