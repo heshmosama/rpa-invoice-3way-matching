@@ -28,6 +28,8 @@ UiPath Automation Cloud
 → Deploy
 ```
 
+Note: To use the template you should be part of the it's org, Otherwise upload the repo to your org.
+
 See **[docs/UIPATH_TEMPLATE.md](docs/UIPATH_TEMPLATE.md)** for the complete guide.
 
 ### Template availability
@@ -112,23 +114,23 @@ Decision order:
 7. Calculation error.
 8. Otherwise `MATCHED` → PM approval.
 
-| Exception | Owner |
-|---|---|
-| Qty Mismatch | PM |
-| Price Mismatch | PM |
-| Calc Error | PM |
-| Missing GRN | Warehouse |
-| Missing PO | PM |
-| Data Quality / OCR | FC |
-| Duplicate | FC |
-| Other | FC |
+| Exception          | Owner     |
+| ------------------ | --------- |
+| Qty Mismatch       | PM        |
+| Price Mismatch     | PM        |
+| Calc Error         | PM        |
+| Missing GRN        | Warehouse |
+| Missing PO         | PM        |
+| Data Quality / OCR | FC        |
+| Duplicate          | FC        |
+| Other              | FC        |
 
 Approval aging rules are driven by the `Config` sheet:
 
-| Age | Action |
-|---:|---|
-| 24h | PM reminder |
-| 48h | Finance Manager escalation |
+| Age | Action                                  |
+| --: | --------------------------------------- |
+| 24h | PM reminder                             |
+| 48h | Finance Manager escalation              |
 | 72h | Urgent Finance Manager + CFO escalation |
 
 Approved invoices are marked **Ready for Payment**. Payment itself is simulated; the project does not call a banking/payment API.
