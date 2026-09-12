@@ -1,67 +1,62 @@
-# UiPath Template Guide
+# UiPath Template and Repository Usage
 
-The UiPath automation is distributed through **UiPath Studio Web Templates** instead of a `.uis` file in GitHub.
+## Template Name
 
-## Template name
+`RPA 3-Way Invoice Matching & Approval`
 
-```text
-RPA - Invoice Intake & 3-Way Matching
-```
+## If You Are in the Same UiPath Organization
 
-If the published template uses a different display name in your organization, replace the name above and in `README.md` / `SETUP.md` before publishing the repository.
-
-## Create a project from the template
-
-1. Sign in to UiPath Automation Cloud.
-2. Open **Studio Web**.
-3. Open **Templates**.
-4. Search for:
-
-   ```text
-   RPA - Invoice Intake & 3-Way Matching
-   ```
-
-5. Open the template.
-6. Select **Use template**.
-7. Create your own project copy.
-8. Open the new project.
-9. Configure/rebind your own connections:
-   - Gmail
-   - Google Drive
-   - Google Sheets
-   - OpenAI
-10. Rebind the Google spreadsheet and Drive folders described in this repository.
-11. Test the workflow.
-12. Deploy the project.
-13. Verify the Gmail event trigger is enabled in Orchestrator.
-
-## Credentials
-
-The template/repository must not distribute the original developer's passwords, OAuth tokens, API keys, or authenticated Integration Service connections.
-
-Each user/environment should authenticate independently.
-
-## Organization-level template availability
-
-If the template is published at **Organization level**, only users who belong to that UiPath organization can discover it by name in Studio Web.
-
-For users outside the organization, the template name alone is not sufficient. The automation must first be distributed through a supported broader channel such as UiPath Marketplace or another approved sharing mechanism.
-
-## Relationship to this GitHub repository
-
-UiPath contains the reusable automation template.
-
-GitHub contains the integration and deployment materials:
+Use the organization template:
 
 ```text
-Apps Script
-configuration templates
-Google Drive structure
-data/schema documentation
-connection setup guide
-architecture diagrams
-regression tests
-security instructions
+UiPath Automation Cloud
+→ Studio Web
+→ Templates
+→ Search "RPA 3-Way Invoice Matching & Approval"
+→ Use template
 ```
 
-No `.uis` export is required in this repository.
+Then configure your own:
+
+- Gmail
+- Google Drive
+- Google Sheets
+- OpenAI
+
+The template should reference required connection types, but it must not provide the owner's authenticated credentials.
+
+## If You Are in a Different UiPath Organization
+
+An organization-level template is not discoverable across separate UiPath organizations.
+
+Use the GitHub repository instead:
+
+```text
+Clone/download repository
+→ UiPath Automation Cloud
+→ Studio Web
+→ Local Workspace
+→ Open the solution/project folder
+→ Configure your own connections
+→ Test
+→ Deploy
+```
+
+This repository intentionally excludes:
+
+- authenticated UiPath connection exports
+- Gmail OAuth tokens
+- Google OAuth tokens
+- OpenAI API keys
+- personal credentials
+- private secrets
+
+## Important
+
+The GitHub method only works if the repository contains the UiPath Local Workspace solution source required by Studio Web.
+
+Do not replace that source with exported authenticated connection folders.
+
+## Public Distribution
+
+If the solution is later published to UiPath Marketplace, users in other organizations can use the Marketplace listing instead of cloning the repository.

@@ -1,74 +1,40 @@
-# Security Guide
+# Security
 
-This repository intentionally distributes the UiPath automation by **template name**, not by committing a `.uis` export.
+This repository is designed for safe sharing.
 
-The main reason is to avoid publishing authenticated connection metadata and credentials that can be included in exported project/connection folders.
+## Never Commit
 
-## Never commit
+- OpenAI API keys
+- Gmail OAuth tokens
+- Google OAuth access/refresh tokens
+- Google client secrets
+- UiPath authenticated connection exports
+- bearer tokens
+- passwords
+- private keys
+- service-account credential JSON
+- `.env` files containing real secrets
 
-- OpenAI API keys.
-- Gmail/Google OAuth access tokens.
-- OAuth refresh tokens.
-- Google client secrets.
-- Google service-account private keys.
-- UiPath Integration Service authenticated connection metadata.
-- passwords.
-- bearer tokens.
-- session cookies.
-- private keys or certificates.
-- Apps Script secrets.
-- exported `Connections`, `connections`, or `.connections` directories containing user-specific authentication information.
+## UiPath Connections
 
-## UiPath distribution policy
+The repository may contain reusable UiPath project/source metadata, but must not contain the owner's authenticated connection credentials.
 
-GitHub should document the template:
+If generated folders such as the following contain credentials, they must not be committed:
 
 ```text
-RPA - Invoice Intake & 3-Way Matching
+Connections/
+connections/
+.connections/
 ```
 
-A user creates their own project from the template and authenticates their own:
+## Template Users
 
-```text
-Gmail
-Google Drive
-Google Sheets
-OpenAI
-```
+Users of the UiPath template must configure their own connections.
 
-The repository should not provide the original developer's connections.
+## GitHub Users
 
-## If a secret was previously committed
+Users outside the UiPath organization should clone/download the repository, open the project in Studio Web Local Workspace, and configure their own connections.
 
-Deleting it from the latest files is not enough.
+## Credential Rotation
 
-1. Revoke/rotate the exposed credential.
-2. Remove the secret from the current working tree.
-3. Check Git history for the same secret.
-4. If it exists in history, purge it using an approved Git-history rewrite procedure such as `git filter-repo`.
-5. Force-push only after reviewing the impact with repository collaborators.
-
-## Recommended pre-push scan
-
-Search tracked files for suspicious strings such as:
-
-```text
-sk-
-api_key
-apikey
-api-key
-client_secret
-access_token
-refresh_token
-bearer
-authorization
-password
-private_key
-oauth
-```
-
-Placeholders such as `YOUR_OPENAI_API_KEY` are acceptable; real credentials are not.
-
-## Google identifiers
-
-Google Spreadsheet IDs and Drive folder IDs are resource identifiers, not passwords, but public repositories should preferably use placeholders so each deployment is configured for its own environment.
+If a real API key, OAuth token, client secret, or credential was ever committed or pushed to GitHub, remove it from the current tree **and rotate/revoke it**. Deleting a secret from the latest commit does not make an exposed credential safe.

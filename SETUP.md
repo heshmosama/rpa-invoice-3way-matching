@@ -1,46 +1,55 @@
 # Setup Guide
 
-This guide creates a new environment from the **UiPath Studio Web template** plus the files in this repository.
+This solution supports two UiPath setup paths.
 
-The repository intentionally does not distribute a `.uis` file.
+## Path A — Same UiPath Organization
 
-## Prerequisites
+Use this path if you belong to the same UiPath organization as the template owner.
 
-- UiPath Automation Cloud / Studio Web.
-- Access to the UiPath template `RPA - Invoice Intake & 3-Way Matching`.
-- Gmail account for invoice intake.
-- Google Drive and Google Sheets access.
-- OpenAI API access for your own UiPath OpenAI connection.
-- Google Apps Script access.
+1. Sign in to UiPath Automation Cloud.
+2. Open Studio Web.
+3. Open **Templates**.
+4. Search for:
 
----
+   `RPA 3-Way Invoice Matching & Approval`
 
-## 1. Create a project from the UiPath template
+5. Select **Use template**.
+6. Create your project.
+7. Configure your own Gmail, Google Drive, Google Sheets, and OpenAI connections.
+8. Continue with the Google Drive, Google Sheets, and Apps Script setup below.
+9. Test the workflow.
+10. Deploy the automation.
+11. Configure/enable your Gmail event trigger.
 
-In UiPath:
+## Path B — Different UiPath Organization
 
-```text
-Automation Cloud
-→ Studio Web
-→ Templates
-→ Search "RPA - Invoice Intake & 3-Way Matching"
-→ Use template
-→ Create project
-```
+Use this path if the organization-level template is not visible to you.
 
-The new project is your own copy. Credentials are not included.
+1. Clone or download this GitHub repository.
+2. Sign in to your own UiPath Automation Cloud account.
+3. Open Studio Web.
+4. Go to **Local Workspace**.
+5. Open the UiPath solution/project folder from the cloned repository.
+6. Allow browser/local file access if prompted.
+7. Configure your own connections:
+   - Gmail
+   - Google Drive
+   - Google Sheets
+   - OpenAI
+8. Rebind any missing connection references inside the project.
+9. Continue with the Google Drive, Google Sheets, and Apps Script setup below.
+10. Test the automation.
+11. Deploy it to your own UiPath environment.
+12. Create/configure your own Gmail event trigger.
 
-If you cannot find the template, see `docs/UIPATH_TEMPLATE.md` for organization-level availability rules.
+> Do not expect the owner's authenticated connections to work. The repository is intentionally sanitized.
 
----
-
-## 2. Create Google Drive folders
+## 1. Create Google Drive Folders
 
 Create:
 
 ```text
 RPA-Invoice-Matching/
-├── Data/
 ├── Incoming-Invoices/
 ├── Pending-Approval/
 ├── Exceptions/
@@ -48,190 +57,106 @@ RPA-Invoice-Matching/
 └── Rejected-Invoices/
 ```
 
-Record the folder IDs. See `docs/GOOGLE_DRIVE_STRUCTURE.md`.
+Copy the folder IDs for the Apps Script configuration.
 
----
+## 2. Create the Google Sheet
 
-## 3. Create the Google Sheet
+Create a spreadsheet named:
 
-Create a Google Sheet named:
+`RPA_3Way_Data`
 
-```text
-RPA_3Way_Data
-```
-
-Recommended location:
-
-```text
-RPA-Invoice-Matching/Data/
-```
-
-Create these tabs:
+Required sheets:
 
 ```text
 PO_Data
 GRN_Data
 Existing_Invoices
 RPA_Live_Output
-Config
 Pending_File_Map
-Test_Cases (optional)
+Config
+Test_Cases
 ```
 
 Use the CSV templates under `config/` where provided.
 
-Important: `Existing_Invoices` represents invoices already present in the simulated ERP/accounting system. Do not automatically add every newly emailed invoice to this sheet.
+## 3. Configure the Config Sheet
 
----
-
-## 4. Configure your UiPath connections
-
-Create your own connections in UiPath Integration Service:
+Recommended keys:
 
 ```text
-Gmail
-Google Drive
-Google Sheets
-OpenAI
+OCR_Confidence_Threshold    0.85
+Approval_Reminder_Hours     24
+Finance_Escalation_Hours    48
+Urgent_Escalation_Hours     72
+PM_Email
+Finance_Manager_Email
+CFO_Email
+Currency                    EGP
 ```
 
-Then open the project created from the template and rebind the relevant activities to your connections.
+## 4. Configure Apps Script
 
-See `docs/CONNECTIONS_SETUP.md`.
+Open:
 
----
+`apps-script/RPA_Invoice_Approval.gs`
 
-## 5. Rebind Google resources in UiPath
-
-Update the UiPath activities to use your:
-
-- `RPA_3Way_Data` spreadsheet.
-- `Incoming-Invoices` folder.
-- `Pending-Approval` folder.
-- `Exceptions` folder.
-
-Verify exact sheet names:
+Replace placeholders such as:
 
 ```text
-PO_Data
-GRN_Data
-Existing_Invoices
-RPA_Live_Output
+YOUR_SPREADSHEET_ID
+YOUR_PENDING_APPROVAL_FOLDER_ID
+YOUR_PROCESSED_INVOICES_FOLDER_ID
+YOUR_REJECTED_INVOICES_FOLDER_ID
 ```
 
-The Gmail event trigger must use your own Gmail connection.
+Deploy the script as a Web App.
 
----
-
-## 6. Configure Apps Script
-
-Use:
+Store the deployed `/exec` URL in Script Properties:
 
 ```text
-apps-script/RPA_Invoice_Approval.gs
+WEB_APP_URL
 ```
 
-Set your own environment values:
-
-```javascript
-SPREADSHEET_ID: 'YOUR_SPREADSHEET_ID',
-PENDING_FOLDER_ID: 'YOUR_PENDING_APPROVAL_FOLDER_ID',
-PROCESSED_FOLDER_ID: 'YOUR_PROCESSED_INVOICES_FOLDER_ID',
-REJECTED_FOLDER_ID: 'YOUR_REJECTED_INVOICES_FOLDER_ID'
-```
-
-Deploy the Apps Script project as a Web App.
-
-Add Script Property:
-
-```text
-WEB_APP_URL = https://script.google.com/macros/s/<DEPLOYMENT_ID>/exec
-```
-
-Then run once:
+Run once:
 
 ```javascript
 setupApprovalInfrastructure()
 ```
 
-This creates/updates the technical `Pending_File_Map` sheet structure and the recurring approval scan trigger.
+## 5. Configure UiPath Connections
 
----
+Create/rebind your own:
 
-## 7. Configure business settings
+- Gmail
+- Google Drive
+- Google Sheets
+- OpenAI
 
-In `Config`:
+See `docs/CONNECTIONS_SETUP.md`.
 
-```text
-OCR_Confidence_Threshold = 0.85
-Approval_Reminder_Hours = 24
-Finance_Escalation_Hours = 48
-Urgent_Escalation_Hours = 72
-PM_Email = <PM email>
-Finance_Manager_Email = <Finance Manager email>
-CFO_Email = <CFO email>
-Currency = EGP
-```
+## 6. Verify Gmail Trigger
 
-Finance Manager and CFO emails may be blank for a simple demo, but their escalation emails will not be sent until configured.
+The Gmail trigger belongs to the account/environment that configures it.
 
----
+A new user should create/configure a trigger using their own Gmail connection.
 
-## 8. Deploy UiPath
+## 7. Smoke Test
 
-Deploy the project created from the template.
+Send one clean matched regression invoice.
 
-In Orchestrator verify:
-
-- the process is deployed;
-- the Gmail Event Trigger exists;
-- the Gmail Event Trigger is enabled/connected.
-
-For the normal invoice-intake test, send a new Gmail message with a PDF attachment instead of manually starting the job.
-
----
-
-## 9. Smoke test
-
-Expected successful path:
+Expected:
 
 ```text
 Gmail
-→ UiPath event trigger
 → Incoming-Invoices
-→ PDF text extraction
-→ OpenAI structured extraction
-→ ERP duplicate check
-→ RPA duplicate check
-→ PO lookup
-→ GRN lookup
-→ 3-way match
-→ RPA_Live_Output = MATCHED
+→ UiPath processing
+→ RPA_Live_Output
 → Pending-Approval
-→ Apps Script
-→ PM approval email
+→ Apps Script approval email
 → Approve
 → Processed-Invoices
-→ Payment_Status = Ready for Payment
 ```
 
----
+## 8. Regression Test
 
-## 10. Regression testing
-
-Run the provided regression test matrix and invoice PDFs.
-
-The suite should cover at least:
-
-- clean match;
-- quantity mismatch;
-- price mismatch;
-- missing GRN;
-- missing PO;
-- ERP duplicate;
-- calculation error;
-- approval reject;
-- approval approve;
-- RPA duplicate;
-- same invoice reference with different supplier;
-- reused filename with a new `Process_ID`.
+Run the scenarios in `tests/Regression_Test_Matrix.csv`.

@@ -1,148 +1,113 @@
 # RPA 3-Way Invoice Matching & Approval
 
-A reusable invoice-processing solution built with **UiPath Studio Web**, **Gmail**, **Google Drive**, **Google Sheets**, **OpenAI**, and **Google Apps Script**.
+Reusable RPA solution for invoice intake, AI-based invoice extraction, PO/GRN validation, duplicate detection, 3-way matching, exception routing, PM approval, escalation, and Google Drive routing.
 
-The solution automates invoice intake, AI-assisted extraction, duplicate detection, PO/GRN validation, 3-way matching, exception routing, PM approval, escalation, and final document routing.
+## Get Started
 
-> **UiPath distribution model**
->
-> The UiPath automation is distributed as a **UiPath Studio Web Template**. This repository intentionally does **not** contain a `.uis` export or authenticated UiPath connection metadata.
+There are two supported ways to use the UiPath automation.
 
----
+### Option 1 — Same UiPath Organization
 
-## UiPath template
+If you are a member of the same UiPath organization as the template owner:
 
-**Template name:** `RPA - Invoice Intake & 3-Way Matching`
+1. Sign in to **UiPath Automation Cloud**.
+2. Open **Studio Web**.
+3. Go to **Templates**.
+4. Search for:
 
-To create your own copy:
+   **RPA 3-Way Invoice Matching & Approval**
+
+5. Select **Use template**.
+6. Create your own project.
+7. Configure your own connections:
+   - Gmail
+   - Google Drive
+   - Google Sheets
+   - OpenAI
+8. Configure the Google resources described in this repository.
+9. Test and deploy the automation.
+
+> The template does not provide the owner's credentials. Each user must authenticate their own connections.
+
+### Option 2 — Different UiPath Organization
+
+If you are **not** part of the same UiPath organization, the organization-level template will not appear in your Templates page.
+
+Use the GitHub repository instead:
+
+1. Clone or download this repository.
+2. Sign in to your own UiPath Automation Cloud account.
+3. Open **Studio Web**.
+4. Go to **Local Workspace**.
+5. Open the UiPath solution/project folder from the cloned repository.
+6. Configure your own:
+   - Gmail connection
+   - Google Drive connection
+   - Google Sheets connection
+   - OpenAI connection
+7. Configure the Google Drive folders and Google Sheets resources described in this repository.
+8. Deploy the Google Apps Script.
+9. Test the workflow.
+10. Deploy the UiPath process and configure/enable your Gmail event trigger.
+
+> The GitHub repository intentionally excludes authenticated connection credentials, API keys, OAuth tokens, and personal account secrets.
+
+## Distribution Summary
+
+| User | Recommended method |
+|---|---|
+| Same UiPath organization | Use the Studio Web template |
+| Different UiPath organization | Clone/download the repository and open it in Studio Web Local Workspace |
+| Public user after Marketplace publication | Use the Marketplace template |
+
+## UiPath Template
+
+**Template name:**  
+`RPA 3-Way Invoice Matching & Approval`
+
+See [docs/UIPATH_TEMPLATE.md](docs/UIPATH_TEMPLATE.md).
+
+## High-Level Architecture
 
 ```text
-UiPath Automation Cloud
-→ Studio Web
-→ Templates
-→ Search for "RPA - Invoice Intake & 3-Way Matching"
-→ Use template
-→ Create project
-→ Configure your own connections
-→ Test
-→ Deploy
+Supplier Gmail
+      ↓
+UiPath Studio Web
+      ↓
+AI invoice extraction
+      ↓
+ERP / RPA duplicate checks
+      ↓
+PO lookup
+      ↓
+GRN lookup
+      ↓
+3-way matching
+      ↓
+┌─────────────────────┬─────────────────────┐
+│ Exception           │ Matched             │
+│ → Exceptions folder │ → Pending Approval  │
+└─────────────────────┴─────────────────────┘
+                              ↓
+                        Apps Script
+                              ↓
+                    PM Approve / Reject
+                         ↓          ↓
+                   Processed     Rejected
 ```
 
-Note: To use the template you should be part of the it's org, Otherwise upload the repo to your org.
+## Main Components
 
-See **[docs/UIPATH_TEMPLATE.md](docs/UIPATH_TEMPLATE.md)** for the complete guide.
+- **UiPath Studio Web** — Gmail intake, PDF handling, AI extraction, validation, 3-way match, duplicate checks, Google Drive routing, and output writing.
+- **Google Apps Script** — PM approval email, approval links, reminders, escalations, final Drive routing, and Process_ID-based file correlation.
+- **Google Sheets** — mock ERP/master data and live RPA output.
+- **Google Drive** — invoice document routing.
+- **OpenAI** — invoice field extraction from PDF text.
 
-### Template availability
-
-If the template is published at **Organization level**, the user must belong to the same UiPath organization to find it by name.
-
-Users outside that UiPath organization need the template to be distributed through another supported UiPath channel, such as Marketplace, before they can discover it.
-
----
-
-## Architecture
-
-```mermaid
-flowchart LR
-    A[Supplier sends invoice PDF by Gmail] --> B[UiPath Gmail Event Trigger]
-    B --> C[Incoming-Invoices]
-    C --> D[Read PDF text]
-    D --> E[OpenAI structured extraction]
-    E --> F[ERP duplicate check]
-    F --> G[RPA duplicate check]
-    G --> H[PO lookup]
-    H --> I[GRN lookup]
-    I --> J[3-way matching rules]
-    J -->|Exception| K[Exceptions + RPA_Live_Output]
-    J -->|Matched| L[Pending-Approval + RPA_Live_Output]
-    L --> M[Google Apps Script]
-    M --> N[PM approval email]
-    N -->|Approve| O[Processed-Invoices / Ready for Payment]
-    N -->|Reject| P[Rejected-Invoices]
-```
-
----
-
-## Responsibilities
-
-### UiPath Studio Web
-
-- Gmail invoice intake trigger.
-- Download PDF attachments.
-- Copy incoming invoice PDFs to Google Drive.
-- Read PDF text.
-- Use OpenAI to extract structured invoice fields.
-- Check simulated ERP duplicates in `Existing_Invoices`.
-- Check RPA duplicates in `RPA_Live_Output`.
-- Look up PO and GRN master data.
-- Apply 3-way matching rules.
-- Write every outcome to `RPA_Live_Output`.
-- Route exceptions to `Exceptions`.
-- Route matched invoices to `Pending-Approval`.
-
-### Google Apps Script
-
-- Scan `MATCHED` invoices awaiting PM approval.
-- Resolve the current pending PDF using `Process_ID` and immutable Google Drive File ID.
-- Send Approve / Reject email links.
-- Update approval status and audit columns.
-- Send reminder/escalation emails.
-- Move approved PDFs to `Processed-Invoices`.
-- Move rejected PDFs to `Rejected-Invoices`.
-
-### Google Sheets / mock ERP
-
-- `PO_Data`: PO master data.
-- `GRN_Data`: goods-receipt data.
-- `Existing_Invoices`: invoices that already exist in the simulated ERP/accounting system.
-- `RPA_Live_Output`: processing/audit output and RPA duplicate history.
-- `Pending_File_Map`: `Process_ID` ↔ immutable Google Drive File ID mapping.
-- `Config`: approval, escalation, email, OCR, and currency configuration.
-
----
-
-## Matching / exception rules
-
-Decision order:
-
-1. Data quality / OCR threshold when a real OCR confidence value exists.
-2. Missing PO.
-3. Missing GRN.
-4. Duplicate invoice.
-5. Quantity mismatch.
-6. Price mismatch.
-7. Calculation error.
-8. Otherwise `MATCHED` → PM approval.
-
-| Exception          | Owner     |
-| ------------------ | --------- |
-| Qty Mismatch       | PM        |
-| Price Mismatch     | PM        |
-| Calc Error         | PM        |
-| Missing GRN        | Warehouse |
-| Missing PO         | PM        |
-| Data Quality / OCR | FC        |
-| Duplicate          | FC        |
-| Other              | FC        |
-
-Approval aging rules are driven by the `Config` sheet:
-
-| Age | Action                                  |
-| --: | --------------------------------------- |
-| 24h | PM reminder                             |
-| 48h | Finance Manager escalation              |
-| 72h | Urgent Finance Manager + CFO escalation |
-
-Approved invoices are marked **Ready for Payment**. Payment itself is simulated; the project does not call a banking/payment API.
-
----
-
-## Required Google Drive structure
+## Required Google Drive Structure
 
 ```text
 RPA-Invoice-Matching/
-├── Data/
-│   └── RPA_3Way_Data
 ├── Incoming-Invoices/
 ├── Pending-Approval/
 ├── Exceptions/
@@ -150,29 +115,23 @@ RPA-Invoice-Matching/
 └── Rejected-Invoices/
 ```
 
-See **[docs/GOOGLE_DRIVE_STRUCTURE.md](docs/GOOGLE_DRIVE_STRUCTURE.md)**.
+See [docs/GOOGLE_DRIVE_STRUCTURE.md](docs/GOOGLE_DRIVE_STRUCTURE.md).
 
----
-
-## Required Google Sheet tabs
+## Required Google Sheets
 
 ```text
 PO_Data
 GRN_Data
 Existing_Invoices
 RPA_Live_Output
-Config
 Pending_File_Map
-Test_Cases (optional)
+Config
+Test_Cases
 ```
 
-`Existing_Invoices` represents invoices that **already exist in the simulated ERP/accounting system**. Do not automatically add every newly received invoice to this sheet.
+`Existing_Invoices` represents invoices that already exist in the simulated ERP/accounting system. It must not automatically receive every incoming invoice.
 
-For RPA-side duplicate detection, `RPA_Live_Output` is also checked using invoice reference plus supplier identity.
-
-### Pending_File_Map
-
-Required columns:
+`Pending_File_Map` should contain:
 
 ```text
 Invoice_Reference
@@ -182,11 +141,16 @@ Registered_At
 Process_ID
 ```
 
-`Process_ID` is the primary correlation key for new processing runs. This prevents a stale mapping such as an old `01 (1).pdf` from being reused when a new `01.pdf` is processed later.
+## Approval and Escalation Rules
 
----
+- MATCHED invoice → PM approval
+- Approve → Ready for Payment + Processed-Invoices
+- Reject → Rejected-Invoices
+- 24h → PM reminder
+- 48h → Finance Manager escalation
+- 72h → Finance Manager + CFO urgent escalation
 
-## Repository structure
+## Repository Contents
 
 ```text
 .
@@ -194,80 +158,29 @@ Process_ID
 ├── SETUP.md
 ├── SECURITY.md
 ├── .gitignore
-│
 ├── apps-script/
-│   └── RPA_Invoice_Approval.gs
-│
 ├── config/
-│   ├── Config_Template.csv
-│   ├── PO_Data_Sample.csv
-│   ├── GRN_Data_Sample.csv
-│   ├── Existing_Invoices_Template.csv
-│   ├── RPA_Live_Output_Headers.csv
-│   ├── Pending_File_Map_Headers.csv
-│   └── settings.example.json
-│
 ├── docs/
-│   ├── UIPATH_TEMPLATE.md
-│   ├── CONNECTIONS_SETUP.md
-│   ├── APPS_SCRIPT_SETUP.md
-│   ├── GOOGLE_DRIVE_STRUCTURE.md
-│   ├── GOOGLE_SHEETS_SCHEMA.md
-│   ├── TESTING.md
-│   ├── architecture.png
-│   └── flowchart.png
-│
 └── tests/
-    ├── Regression_Test_Matrix.csv
-    ├── ERP_Duplicate_Seed.csv
-    └── test invoice PDFs
 ```
 
-### Intentionally not included
-
-```text
-*.uis exports
-Connections/
-connections/
-.connections/
-OAuth tokens
-API keys
-UiPath authenticated connection metadata
-Google credentials
-OpenAI credentials
-```
-
----
-
-## Quick start
-
-1. Confirm you can access the UiPath template.
-2. In Studio Web, open **Templates** and search for `RPA - Invoice Intake & 3-Way Matching`.
-3. Click **Use template** to create your own project copy.
-4. Create the required Google Drive folders.
-5. Create the `RPA_3Way_Data` spreadsheet and required tabs.
-6. Configure your own Gmail, Google Drive, Google Sheets, and OpenAI connections in UiPath.
-7. Rebind the template activities to your connections and Google resources.
-8. Configure `apps-script/RPA_Invoice_Approval.gs` with your Google resource IDs.
-9. Deploy Apps Script as a Web App and set `WEB_APP_URL` in Script Properties.
-10. Run `setupApprovalInfrastructure()` once.
-11. Deploy the UiPath process and verify the Gmail event trigger is enabled.
-12. Run a clean matched invoice test.
-13. Run the regression test pack.
-
-Full instructions: **[SETUP.md](SETUP.md)**.
-
----
+The repository may also contain the UiPath Local Workspace solution source required to open the solution in Studio Web. It must **not** contain exported authenticated connection credentials.
 
 ## Security
 
-Every user must authenticate their **own** connections. This repository must never contain:
+Never commit:
 
-- OpenAI API keys.
-- Gmail/Google OAuth tokens.
-- UiPath Integration Service credentials.
-- service-account private keys.
-- passwords or bearer tokens.
-- exported connection folders containing authenticated metadata.
+- OpenAI API keys
+- Gmail/Google OAuth tokens
+- UiPath authenticated connection data
+- Google client secrets
+- service-account private keys
+- access or refresh tokens
+- passwords
+- `.env` files with real secrets
 
-See **[SECURITY.md](SECURITY.md)**.
+See [SECURITY.md](SECURITY.md).
+
+## Setup
+
+For full installation steps, see [SETUP.md](SETUP.md).

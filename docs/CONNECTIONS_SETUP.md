@@ -1,95 +1,69 @@
-# UiPath Connection Setup
+# Connection Setup
 
-After creating a project from the UiPath template, configure your own Integration Service connections.
+Each user must configure their own connections.
 
-No authenticated connection is supplied by this repository.
-
-## 1. Gmail
+## Gmail
 
 Used for:
 
-- `Email Received` event trigger.
-- downloading invoice PDF attachments.
+- invoice email intake
+- Gmail event trigger
 
-Create a Gmail connection using the mailbox that will receive invoices.
+Create a Gmail connection in UiPath Integration Service using your own Google account.
 
-Then:
+The Gmail event trigger must be created/configured for the Gmail account that should receive invoices.
 
-1. Open the project created from the template.
-2. Re-select your Gmail connection in Gmail activities.
-3. Configure the Gmail event trigger to use your connection.
-4. Deploy the project.
-5. Verify the trigger is enabled in Orchestrator.
-
-A different user who wants emails from their own mailbox must create/use their own Gmail trigger and Gmail connection.
-
-## 2. Google Drive
-
-Used for invoice routing:
-
-```text
-Incoming-Invoices
-Pending-Approval
-Exceptions
-```
-
-Apps Script later moves approved/rejected files to:
-
-```text
-Processed-Invoices
-Rejected-Invoices
-```
-
-Create a Google Drive connection with read/write access to the project folder structure.
-
-Rebind the UiPath Drive activities to the correct folders in your environment.
-
-## 3. Google Sheets
+## Google Drive
 
 Used for:
 
-- `PO_Data` lookup.
-- `GRN_Data` lookup.
-- `Existing_Invoices` ERP duplicate check.
-- `RPA_Live_Output` RPA duplicate check.
-- writing processing results to `RPA_Live_Output`.
+- Incoming-Invoices
+- Pending-Approval
+- Exceptions
+- Processed-Invoices
+- Rejected-Invoices
 
-Create a Google Sheets connection and select your own `RPA_3Way_Data` spreadsheet in all relevant read/write activities.
+Authenticate your own Google account and bind the project activities to your connection.
 
-Required tabs:
+## Google Sheets
+
+Used for:
+
+- PO_Data
+- GRN_Data
+- Existing_Invoices
+- RPA_Live_Output
+- Config
+- Test_Cases
+- Pending_File_Map
+
+Authenticate your own Google account and point the project to your own spreadsheet.
+
+## OpenAI
+
+Used for invoice data extraction.
+
+Create your own OpenAI connection and provide your own API key through UiPath's connection configuration.
+
+Never commit the API key to GitHub.
+
+## Same-Organization Template User
+
+When using the organization template, configure/rebind your own connections after creating the project.
+
+## Different-Organization GitHub User
+
+When using the GitHub repository:
 
 ```text
-PO_Data
-GRN_Data
-Existing_Invoices
-RPA_Live_Output
-Config
-Pending_File_Map
+Clone repository
+→ Studio Web
+→ Local Workspace
+→ Open project
+→ Rebind Gmail
+→ Rebind Google Drive
+→ Rebind Google Sheets
+→ Rebind OpenAI
 ```
 
-## 4. OpenAI
-
-Used to convert extracted invoice PDF text into structured invoice data.
-
-Create your own OpenAI connection in UiPath Integration Service using your own API key.
-
-Never store the API key in:
-
-- GitHub;
-- README files;
-- JSON committed to the repository;
-- UiPath variables as plain text;
-- screenshots.
-
-## After rebinding
-
-Verify:
-
-```text
-Gmail trigger → your Gmail connection
-Google Drive activities → your Drive connection + folders
-Google Sheets activities → your Sheets connection + RPA_3Way_Data
-OpenAI activity → your OpenAI connection
-```
-
-Then deploy and run a clean matched invoice smoke test.
+The repository must not contain the original owner's authenticated connection data.
