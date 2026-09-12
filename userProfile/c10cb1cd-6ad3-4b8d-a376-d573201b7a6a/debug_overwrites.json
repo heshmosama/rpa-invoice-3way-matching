@@ -1,0 +1,75 @@
+{
+  "docVersion": "1.0.0",
+  "tenants": [
+    {
+      "tenantKey": "9d1a32c0-c657-445f-9424-c8f593db3d9d",
+      "resources": [
+        {
+          "solutionResourceKey": "b93c51bf-d67f-4c2d-bb34-e908fdd7bac9",
+          "reprovisioningIndex": 0,
+          "overwrite": {
+            "resourceKey": "b93c51bf-d67f-4c2d-bb34-e908fdd7bac9",
+            "resourceName": "gmail-20260910110935408",
+            "folderKey": "43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "folderFullyQualifiedName": "heshamosama877@gmail.com\u0027s workspace",
+            "folderPath": "52e76211-4ceb-43e6-9bfa-ffbc81fdbf2a.43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "type": "Reference",
+            "kind": "connection"
+          }
+        },
+        {
+          "solutionResourceKey": "908e8961-24e6-45de-a439-1b10b5ca0a9f",
+          "reprovisioningIndex": 0,
+          "overwrite": {
+            "resourceKey": "908e8961-24e6-45de-a439-1b10b5ca0a9f",
+            "resourceName": "heshamosama877@gmail.com",
+            "folderKey": "43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "folderFullyQualifiedName": "heshamosama877@gmail.com\u0027s workspace",
+            "folderPath": "52e76211-4ceb-43e6-9bfa-ffbc81fdbf2a.43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "type": "Reference",
+            "kind": "connection"
+          }
+        },
+        {
+          "solutionResourceKey": "8547f232-d579-448e-bdd8-f42247291d87",
+          "reprovisioningIndex": 0,
+          "overwrite": {
+            "resourceKey": "8547f232-d579-448e-bdd8-f42247291d87",
+            "resourceName": "heshamosama877@gmail.com",
+            "folderKey": "43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "folderFullyQualifiedName": "heshamosama877@gmail.com\u0027s workspace",
+            "folderPath": "52e76211-4ceb-43e6-9bfa-ffbc81fdbf2a.43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "type": "Reference",
+            "kind": "connection"
+          }
+        },
+        {
+          "solutionResourceKey": "e98ae48e-b685-4979-94cf-f501a9cc4d76",
+          "reprovisioningIndex": 0,
+          "overwrite": {
+            "resourceKey": "e98ae48e-b685-4979-94cf-f501a9cc4d76",
+            "resourceName": "OpenAI",
+            "folderKey": "43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "folderFullyQualifiedName": "heshamosama877@gmail.com\u0027s workspace",
+            "folderPath": "52e76211-4ceb-43e6-9bfa-ffbc81fdbf2a.43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "type": "Reference",
+            "kind": "connection"
+          }
+        },
+        {
+          "solutionResourceKey": "96cb2ce0-a312-425e-94af-82f2e3eaa0a0",
+          "reprovisioningIndex": 0,
+          "overwrite": {
+            "resourceKey": "96cb2ce0-a312-425e-94af-82f2e3eaa0a0",
+            "resourceName": "heshamosama877@gmail.com",
+            "folderKey": "43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "folderFullyQualifiedName": "heshamosama877@gmail.com\u0027s workspace",
+            "folderPath": "52e76211-4ceb-43e6-9bfa-ffbc81fdbf2a.43de6d42-f6fe-4664-8bf9-20f5ed4d9577",
+            "type": "Reference",
+            "kind": "connection"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "heshamosama877@gmail.com_2",
+    "kind": "connection",
+    "type": "uipath-google-sheets",
+    "apiVersion": "integrationservice.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "connectorName": "Google Sheets",
+      "name": "heshamosama877@gmail.com_2",
+      "description": null,
+      "authenticationType": "ConfigurableByUsers",
+      "connectorVersion": "1.9.44",
+      "connectorKey": "uipath-google-sheets",
+      "pollingInterval": 5
+    },
+    "locks": [],
+    "key": "96cb2ce0-a312-425e-94af-82f2e3eaa0a0"
+  }
+}

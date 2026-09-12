@@ -1,0 +1,369 @@
+<Activity xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=Studio.Generated.TypedDataTable8" xmlns:sd1="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd2="clr-namespace:System.Data;assembly=Studio.Generated.TypedDataTable9" xmlns:sd3="clr-namespace:System.Data;assembly=Studio.Generated.TypedDataTable10" xmlns:this="clr-namespace:" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugade="clr-namespace:UiPath.GSuite.Activities.Drive.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugage="clr-namespace:UiPath.GSuite.Activities.Gmail.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugagm="clr-namespace:UiPath.GSuite.Activities.Gmail.Models;assembly=UiPath.GSuite.Activities" xmlns:ugagt="clr-namespace:UiPath.GSuite.Activities.Gmail.Triggers;assembly=UiPath.GSuite.Activities" xmlns:ugam="clr-namespace:UiPath.GSuite.Activities.Models;assembly=UiPath.GSuite.Activities" xmlns:ugase="clr-namespace:UiPath.GSuite.Activities.Sheets.Enums;assembly=UiPath.GSuite.Activities" xmlns:ugdm="clr-namespace:UiPath.GSuite.Drive.Models;assembly=UiPath.GSuite" xmlns:uggm="clr-namespace:UiPath.GSuite.Gmail.Models;assembly=UiPath.GSuite" xmlns:ugm="clr-namespace:UiPath.GSuite.Models;assembly=UiPath.GSuite" xmlns:ugsc="clr-namespace:UiPath.GSuite.Sheets.Contracts;assembly=UiPath.GSuite" xmlns:ugsm="clr-namespace:UiPath.GSuite.Sheets.Models;assembly=UiPath.GSuite" xmlns:ugsmc="clr-namespace:UiPath.GSuite.Sheets.Models.Columns;assembly=UiPath.GSuite" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C01A9CC4D76_v2_sub_chat_sub_completion_Create.Bundle;assembly=C01A9CC4D76_v2_sub_c.X0Nmn21nZoN1qlQjn1Orr8M2" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.GSuite.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="sap sap2010" x:Class="MatchRules"><x:Members><x:Property Name="in_InvoiceReference" Type="InArgument(x:String)"/><x:Property Name="in_PONumber" Type="InArgument(x:String)"/><x:Property Name="in_InvoiceAmount" Type="InArgument(x:Double)"/><x:Property Name="in_InvoiceQty" Type="InArgument(x:Double)"/><x:Property Name="in_InvoiceUnitPrice" Type="InArgument(x:Double)"/><x:Property Name="in_POQty" Type="InArgument(x:Double)"/><x:Property Name="in_POUnitPrice" Type="InArgument(x:Double)"/><x:Property Name="in_GRNQty" Type="InArgument(x:Double)"/><x:Property Name="out_MatchStatus" Type="OutArgument(x:String)"/><x:Property Name="out_ExceptionType" Type="OutArgument(x:String)"/><x:Property Name="out_ExceptionOwner" Type="OutArgument(x:String)"/><x:Property Name="out_ApprovalStatus" Type="OutArgument(x:String)"/><x:Property Name="out_CalcCheck" Type="OutArgument(x:String)"/></x:Members><TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="155">
+      <x:String>UiPath.ConnectionClient.Contracts</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>UiPath.GSuite.Activities.Drive.Enums</x:String>
+      <x:String>System</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.GSuite.Drive.Models</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.GSuite.Activities.Models</x:String>
+      <x:String>UiPath.GSuite.Activities.Sheets.Enums</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>UiPath.GSuite.Sheets.Contracts</x:String>
+      <x:String>UiPath.GSuite.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.GSuite.Sheets.Enums</x:String>
+      <x:String>UiPath.GSuite.Sheets.Models</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>UiPath.Web.Activities.JSON.Models</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models.FilterBuilder</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>UiPath.PDF.Activities.PDF</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath.GSuite.Models</x:String>
+      <x:String>UiPath.Shared.Api.Google.Gmail.Models</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.GSuite.Gmail.Models</x:String>
+      <x:String>UiPath.GSuite.Activities.Gmail.Enums</x:String>
+      <x:String>UiPath.GSuite.Activities.Gmail.Filters</x:String>
+      <x:String>UiPath.GSuite.Activities.Filters</x:String>
+      <x:String>UiPath.GSuite.Gmail.Enums</x:String>
+      <x:String>UiPath.GSuite.Activities.Gmail.Models</x:String>
+      <x:String>UiPath.GSuite.Activities.Utilities</x:String>
+      <x:String>UiPath.Productivity.Activities.Diagnostics</x:String>
+      <x:String>UiPath.GSuite.Activities.Gmail.Triggers</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Shared.Api.Google.Gmail.Contracts</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.C01A9CC4D76_v2_sub_chat_sub_completion_Create.Bundle</x:String>
+      <x:String>Newtonsoft.Json.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>Microsoft</x:String>
+      <x:String>Microsoft.Win32.SafeHandles</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Configuration.Assemblies</x:String>
+      <x:String>System.CodeDom.Compiler</x:String>
+      <x:String>System.Buffers</x:String>
+      <x:String>System.Buffers.Text</x:String>
+      <x:String>System.Buffers.Binary</x:String>
+      <x:String>System.Threading</x:String>
+      <x:String>System.Threading.Tasks</x:String>
+      <x:String>System.Threading.Tasks.Sources</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Text.Unicode</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Security.Principal</x:String>
+      <x:String>System.Security.Permissions</x:String>
+      <x:String>System.Security.Cryptography</x:String>
+      <x:String>System.Runtime</x:String>
+      <x:String>System.Runtime.Remoting</x:String>
+      <x:String>System.Runtime.ExceptionServices</x:String>
+      <x:String>System.Runtime.ConstrainedExecution</x:String>
+      <x:String>System.Runtime.Versioning</x:String>
+      <x:String>System.Runtime.Loader</x:String>
+      <x:String>System.Runtime.Intrinsics</x:String>
+      <x:String>System.Runtime.Intrinsics.Wasm</x:String>
+      <x:String>System.Runtime.Intrinsics.Arm</x:String>
+      <x:String>System.Runtime.Intrinsics.X86</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.InteropServices.Marshalling</x:String>
+      <x:String>System.Runtime.InteropServices.ObjectiveC</x:String>
+      <x:String>System.Runtime.InteropServices.ComTypes</x:String>
+      <x:String>System.Runtime.CompilerServices</x:String>
+      <x:String>System.Resources</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Reflection.Metadata</x:String>
+      <x:String>System.Reflection.Emit</x:String>
+      <x:String>System.IO.Enumeration</x:String>
+      <x:String>System.Diagnostics.SymbolStore</x:String>
+      <x:String>System.Diagnostics.Contracts</x:String>
+      <x:String>System.Diagnostics.CodeAnalysis</x:String>
+      <x:String>System.Diagnostics.Tracing</x:String>
+      <x:String>System.Collections.Concurrent</x:String>
+      <x:String>Internal</x:String>
+      <x:String>System.CodeDom</x:String>
+      <x:String>Microsoft.CSharp</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Linq.Expressions.Interpreter</x:String>
+      <x:String>UiPath.Workflow.Runtime</x:String>
+      <x:String>System.Activities.Tracking</x:String>
+      <x:String>System.Activities.Statements.Tracking</x:String>
+      <x:String>System.Activities.Runtime</x:String>
+      <x:String>System.Activities.Runtime.DurableInstancing</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Activities.ParallelTracking</x:String>
+      <x:String>System.Activities.Hosting</x:String>
+      <x:String>System.Activities.Persistence</x:String>
+      <x:String>System.Activities.DurableInstancing</x:String>
+      <x:String>System.ComponentModel.Design.Serialization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Security.Authentication.ExtendedProtection</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Timers</x:String>
+      <x:String>System.ComponentModel.Design</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Schema</x:String>
+      <x:String>System.Xml.Xsl</x:String>
+      <x:String>System.Xml.Xsl.Runtime</x:String>
+      <x:String>System.Xml.XPath</x:String>
+      <x:String>System.Xml.Resolvers</x:String>
+      <x:String>Microsoft.CodeAnalysis</x:String>
+      <x:String>Microsoft.CodeAnalysis.FlowAnalysis</x:String>
+      <x:String>Microsoft.CodeAnalysis.Text</x:String>
+      <x:String>Microsoft.CodeAnalysis.Diagnostics</x:String>
+      <x:String>Microsoft.CodeAnalysis.Diagnostics.Telemetry</x:String>
+      <x:String>Microsoft.CodeAnalysis.Operations</x:String>
+      <x:String>Microsoft.CodeAnalysis.Emit</x:String>
+      <x:String>Microsoft.CodeAnalysis.VisualBasic</x:String>
+      <x:String>Microsoft.CodeAnalysis.VisualBasic.Syntax</x:String>
+      <x:String>Microsoft.VisualBasic.FileIO</x:String>
+      <x:String>System.Security.Authentication</x:String>
+      <x:String>System.Net.Cache</x:String>
+      <x:String>System.Net.NetworkInformation</x:String>
+      <x:String>System.Net.Security</x:String>
+      <x:String>System.Net.Sockets</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="53">
+      <AssemblyReference>Studio.Generated.TypedDataTable10</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable9</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable8</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable7</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable6</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable5</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable4</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable3</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable2</AssemblyReference>
+      <AssemblyReference>Studio.Generated.TypedDataTable1</AssemblyReference>
+      <AssemblyReference>C01A9CC4D76_v2_sub_c.X0Nmn21nZoN1qlQjn1Orr8M2</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Runtime</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Reflection</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>FSharp.Core</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentProcessing.Contracts</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.ReaderWriter</AssemblyReference>
+      <AssemblyReference>System.Xml.XmlSerializer</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Globalization</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>ConnectionClient</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Apply 3-Way Match Rules" sap2010:WorkflowViewState.IdRef="MatchRules_Sequence_1"><Assign DisplayName="Initialize Match Status"><Assign.To><OutArgument x:TypeArguments="x:String">[out_MatchStatus]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:String">[""]</InArgument></Assign.Value></Assign><Assign DisplayName="Initialize Exception Type"><Assign.To><OutArgument x:TypeArguments="x:String">[out_ExceptionType]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:String">[""]</InArgument></Assign.Value></Assign><Assign DisplayName="Initialize Exception Owner"><Assign.To><OutArgument x:TypeArguments="x:String">[out_ExceptionOwner]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:String">[""]</InArgument></Assign.Value></Assign><Assign DisplayName="Initialize Approval Status"><Assign.To><OutArgument x:TypeArguments="x:String">[out_ApprovalStatus]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:String">[""]</InArgument></Assign.Value></Assign><Assign DisplayName="Initialize Calc Check"><Assign.To><OutArgument x:TypeArguments="x:String">[out_CalcCheck]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:String">[""]</InArgument></Assign.Value></Assign><Sequence sap2010:Annotation.AnnotationText="Inside the main For Each currentFile invoice-processing loop, locate the existing If activity:&#10;duplicateFound&#10;Keep the True branch for the Duplicate exception unchanged.&#10;In the False branch, add an If activity to check for a quantity mismatch.&#10;Condition:&#10;in_InvoiceQty &lt;&gt; in_GRNQty&#10;In the True branch:&#10;Set out_MatchStatus to:&#10;&quot;EXCEPTION&quot;&#10;Set out_ExceptionType to:&#10;&quot;Qty Mismatch&quot;&#10;Set out_ExceptionOwner to:&#10;&quot;PM&quot;&#10;Then add a Write Line activity using:&#10;&quot;EXCEPTION | Invoice=&quot; &amp; in_InvoiceReference &amp;&#10;&quot; | PO=&quot; &amp; in_PONumber &amp;&#10;&quot; | Reason=Qty Mismatch | Owner=PM&quot; &amp;&#10;&quot; | Invoice Qty=&quot; &amp; in_InvoiceQty.ToString &amp;&#10;&quot; | PO Qty=&quot; &amp; in_POQty.ToString &amp;&#10;&quot; | GRN Qty=&quot; &amp; in_GRNQty.ToString&#10;Leave the False branch empty for now because Price Mismatch checking will be added there next.&#10;Important:&#10;- Put this inside the False branch of duplicateFound.&#10;- Do not put it inside any row loop.&#10;- Do not create duplicate variables." DisplayName="Qty Mismatch" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                                  <If Condition="[in_InvoiceQty &lt;&gt; in_GRNQty]" DisplayName="If in_InvoiceQty is not equal to in_GRNQty" sap2010:WorkflowViewState.IdRef="If_8">
+                                                    <If.Then>
+                                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                                        <Assign DisplayName="Set out_MatchStatus to &quot;EXCEPTION&quot;" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[out_MatchStatus]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">["EXCEPTION"]</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                        <Assign DisplayName="Set out_ExceptionType to &quot;Qty Mismatch&quot;" sap2010:WorkflowViewState.IdRef="Assign_37">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[out_ExceptionType]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">["Qty Mismatch"]</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                        <Assign DisplayName="Set out_ExceptionOwner to &quot;PM&quot;" sap2010:WorkflowViewState.IdRef="Assign_38">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:String">[out_ExceptionOwner]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:String">["PM"]</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                        <ui:LogMessage DisplayName="Log Message with details of the quantity mismatch" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Warn" Message="[String.Format(&quot;EXCEPTION | Invoice={0} | PO={1} | Reason=Qty Mismatch | Owner=PM | Invoice Qty={2} | PO Qty={3} | GRN Qty={4}&quot;, in_InvoiceReference, in_PONumber, in_InvoiceQty.ToString(), in_POQty.ToString(), in_GRNQty.ToString())]"/>
+                                                      </Sequence>
+                                                    </If.Then>
+                                                    <If.Else>
+                                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                                        <Sequence DisplayName="Else (False branch for quantity mismatch, left empty)" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                                          <Sequence sap2010:Annotation.AnnotationText="Inside the main For Each currentFile invoice-processing loop, locate the existing quantity mismatch If activity with condition:&#10;in_InvoiceQty &lt;&gt; in_GRNQty&#10;Keep the True branch for the Qty Mismatch exception unchanged.&#10;In the False branch, add another If activity to check for a price mismatch.&#10;Condition:&#10;in_InvoiceUnitPrice &lt;&gt; in_POUnitPrice&#10;In the True branch:&#10;Set out_MatchStatus to:&#10;&quot;EXCEPTION&quot;&#10;Set out_ExceptionType to:&#10;&quot;Price Mismatch&quot;&#10;Set out_ExceptionOwner to:&#10;&quot;PM&quot;&#10;Then add a Write Line activity using:&#10;&quot;EXCEPTION | Invoice=&quot; &amp; in_InvoiceReference &amp;&#10;&quot; | PO=&quot; &amp; in_PONumber &amp;&#10;&quot; | Reason=Price Mismatch | Owner=PM&quot; &amp;&#10;&quot; | Invoice Price=&quot; &amp; in_InvoiceUnitPrice.ToString &amp;&#10;&quot; | PO Price=&quot; &amp; in_POUnitPrice.ToString&#10;Leave the False branch empty for now because the calculation error check will be added there next.&#10;Important:&#10;- Put this inside the False branch of the Qty Mismatch condition.&#10;- Do not put it inside any DataTable row loop.&#10;- Do not create duplicate variables." DisplayName="Price Mismatch" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                                            <If Condition="[in_InvoiceUnitPrice &lt;&gt; in_POUnitPrice]" DisplayName="If the invoice unit price does not match the purchase order unit price, handle the exception." sap2010:WorkflowViewState.IdRef="If_9">
+                                                              <If.Then>
+                                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                                                  <Assign DisplayName="Assign &quot;EXCEPTION&quot; to the out_MatchStatus variable." sap2010:WorkflowViewState.IdRef="Assign_39">
+                                                                    <Assign.To>
+                                                                      <OutArgument x:TypeArguments="x:String">[out_MatchStatus]</OutArgument>
+                                                                    </Assign.To>
+                                                                    <Assign.Value>
+                                                                      <InArgument x:TypeArguments="x:String">["EXCEPTION"]</InArgument>
+                                                                    </Assign.Value>
+                                                                  </Assign>
+                                                                  <Assign DisplayName="Assign &quot;Price Mismatch&quot; to the out_ExceptionType variable." sap2010:WorkflowViewState.IdRef="Assign_40">
+                                                                    <Assign.To>
+                                                                      <OutArgument x:TypeArguments="x:String">[out_ExceptionType]</OutArgument>
+                                                                    </Assign.To>
+                                                                    <Assign.Value>
+                                                                      <InArgument x:TypeArguments="x:String">["Price Mismatch"]</InArgument>
+                                                                    </Assign.Value>
+                                                                  </Assign>
+                                                                  <Assign DisplayName="Assign &quot;PM&quot; to the out_ExceptionOwner variable." sap2010:WorkflowViewState.IdRef="Assign_41">
+                                                                    <Assign.To>
+                                                                      <OutArgument x:TypeArguments="x:String">[out_ExceptionOwner]</OutArgument>
+                                                                    </Assign.To>
+                                                                    <Assign.Value>
+                                                                      <InArgument x:TypeArguments="x:String">["PM"]</InArgument>
+                                                                    </Assign.Value>
+                                                                  </Assign>
+                                                                  <ui:LogMessage DisplayName="Log a warning message with details about the price mismatch exception." sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Warn" Message="[String.Format(&quot;EXCEPTION | Invoice={0} | PO={1} | Reason=Price Mismatch | Owner=PM | Invoice Price={2} | PO Price={3}&quot;, in_InvoiceReference, in_PONumber, in_InvoiceUnitPrice.ToString(), in_POUnitPrice.ToString())]"/>
+                                                                </Sequence>
+                                                              </If.Then>
+                                                              <If.Else>
+                                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                                                  <Sequence sap2010:Annotation.AnnotationText="Inside the main For Each currentFile invoice-processing loop, locate the existing Price Mismatch If activity with condition:&#10;in_InvoiceUnitPrice &lt;&gt; in_POUnitPrice&#10;Keep the True branch for the Price Mismatch exception unchanged.&#10;In the False branch, add an If activity to detect a calculation error.&#10;Use this condition:&#10;Math.Abs(in_InvoiceAmount - (in_InvoiceQty * in_InvoiceUnitPrice)) &gt; 0.01&#10;In the True branch:&#10;Set out_MatchStatus to:&#10;&quot;EXCEPTION&quot;&#10;Set out_ExceptionType to:&#10;&quot;Calc Error&quot;&#10;Set out_ExceptionOwner to:&#10;&quot;PM&quot;&#10;Then add a Write Line activity using:&#10;&quot;EXCEPTION | Invoice=&quot; &amp; in_InvoiceReference &amp;&#10;&quot; | PO=&quot; &amp; in_PONumber &amp;&#10;&quot; | Reason=Calc Error | Owner=PM&quot; &amp;&#10;&quot; | Invoice Total=&quot; &amp; in_InvoiceAmount.ToString &amp;&#10;&quot; | Calculated Total=&quot; &amp; (in_InvoiceQty * in_InvoiceUnitPrice).ToString&#10;Leave the False branch empty for now because the successful MATCHED logic will be added there next.&#10;Important:&#10;- Put this inside the False branch of the Price Mismatch condition.&#10;- Do not put it inside any DataTable row loop.&#10;- Do not create duplicate variables." DisplayName="Calculation Error" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                                                    <If Condition="[Math.Abs(in_InvoiceAmount - in_InvoiceQty * in_InvoiceUnitPrice) &gt; 0.01]" DisplayName="Inside the False branch of the existing If activity (condition: in_InvoiceUnitPrice &lt;&gt; in_POUnitPrice):" sap2010:WorkflowViewState.IdRef="If_10">
+                                                                      <If.Then>
+                                                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                                                          <Sequence DisplayName="In the True branch of this new If activity:" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                                                            <Assign DisplayName="Assign the value &quot;EXCEPTION&quot; to the out_MatchStatus variable." sap2010:WorkflowViewState.IdRef="Assign_42">
+                                                                              <Assign.To>
+                                                                                <OutArgument x:TypeArguments="x:String">[out_MatchStatus]</OutArgument>
+                                                                              </Assign.To>
+                                                                              <Assign.Value>
+                                                                                <InArgument x:TypeArguments="x:String">["EXCEPTION"]</InArgument>
+                                                                              </Assign.Value>
+                                                                            </Assign>
+                                                                            <Assign DisplayName="Assign the value &quot;Calc Error&quot; to the out_ExceptionType variable." sap2010:WorkflowViewState.IdRef="Assign_43">
+                                                                              <Assign.To>
+                                                                                <OutArgument x:TypeArguments="x:String">[out_ExceptionType]</OutArgument>
+                                                                              </Assign.To>
+                                                                              <Assign.Value>
+                                                                                <InArgument x:TypeArguments="x:String">["Calc Error"]</InArgument>
+                                                                              </Assign.Value>
+                                                                            </Assign>
+                                                                            <Assign DisplayName="Assign the value &quot;PM&quot; to the out_ExceptionOwner variable." sap2010:WorkflowViewState.IdRef="Assign_44">
+                                                                              <Assign.To>
+                                                                                <OutArgument x:TypeArguments="x:String">[out_ExceptionOwner]</OutArgument>
+                                                                              </Assign.To>
+                                                                              <Assign.Value>
+                                                                                <InArgument x:TypeArguments="x:String">["PM"]</InArgument>
+                                                                              </Assign.Value>
+                                                                            </Assign>
+                                                                            <ui:LogMessage DisplayName="Log a message with the details: &quot;EXCEPTION | Invoice=&quot; &amp; in_InvoiceReference &amp; &quot; | PO=&quot; &amp; in_PONumber &amp; &quot; | Reason=Calc Error | Owner=PM&quot; &amp; &quot; | Invoice Total=&quot; &amp; in_InvoiceAmount.ToString &amp; &quot; | Calculated Total=&quot; &amp; (in_InvoiceQty * in_InvoiceUnitPrice).ToString." sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Warn" Message="[String.Format(&quot;EXCEPTION | Invoice={0} | PO={1} | Reason=Calc Error | Owner=PM | Invoice Total={2} | Calculated Total={3}&quot;, in_InvoiceReference, in_PONumber, in_InvoiceAmount.ToString(), (in_InvoiceQty * in_InvoiceUnitPrice).ToString())]"/>
+                                                                          </Sequence>
+                                                                        </Sequence>
+                                                                      </If.Then>
+                                                                      <If.Else>
+                                                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                                                          <Sequence DisplayName="Leave the False branch of this new If activity empty." sap2010:WorkflowViewState.IdRef="Sequence_49">
+                                                                            <Sequence sap2010:Annotation.AnnotationText="Inside the main For Each currentFile invoice-processing loop, locate the existing Calc Error If activity with condition:&#10;Math.Abs(in_InvoiceAmount - (in_InvoiceQty * in_InvoiceUnitPrice)) &gt; 0.01&#10;Keep the True branch for the Calc Error exception unchanged.&#10;In the False branch, add the successful matched invoice logic.&#10;Set:&#10;out_MatchStatus = &quot;MATCHED&quot;&#10;out_ExceptionType = &quot;&quot;&#10;out_ExceptionOwner = &quot;&quot;&#10;Create a String variable named out_ApprovalStatus if it does not already exist.&#10;Set:&#10;out_ApprovalStatus = &quot;Pending PM Approval&quot;&#10;Then add a Write Line activity using:&#10;&quot;MATCHED | Invoice=&quot; &amp; in_InvoiceReference &amp;&#10;&quot; | PO=&quot; &amp; in_PONumber &amp;&#10;&quot; | Invoice Amount=&quot; &amp; in_InvoiceAmount.ToString &amp;&#10;&quot; | PO Qty=&quot; &amp; in_POQty.ToString &amp;&#10;&quot; | GRN Qty=&quot; &amp; in_GRNQty.ToString &amp;&#10;&quot; | Unit Price=&quot; &amp; in_InvoiceUnitPrice.ToString &amp;&#10;&quot; | Approval Status=&quot; &amp; out_ApprovalStatus&#10;Important:&#10;- Put this ONLY in the False branch of the Calc Error condition.&#10;- Keep it inside the main For Each currentFile loop.&#10;- Do not put it inside any DataTable row loop.&#10;- Do not create duplicate variables." DisplayName="MATCHED" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                                                                              <Assign DisplayName="Assign the value &quot;MATCHED&quot; to the 'out_MatchStatus' variable." sap2010:WorkflowViewState.IdRef="Assign_45">
+                                                                                <Assign.To>
+                                                                                  <OutArgument x:TypeArguments="x:String">[out_MatchStatus]</OutArgument>
+                                                                                </Assign.To>
+                                                                                <Assign.Value>
+                                                                                  <InArgument x:TypeArguments="x:String">["MATCHED"]</InArgument>
+                                                                                </Assign.Value>
+                                                                              </Assign>
+                                                                              <Assign DisplayName="Assign an empty string to the 'out_ExceptionType' variable." sap2010:WorkflowViewState.IdRef="Assign_46">
+                                                                                <Assign.To>
+                                                                                  <OutArgument x:TypeArguments="x:String">[out_ExceptionType]</OutArgument>
+                                                                                </Assign.To>
+                                                                                <Assign.Value>
+                                                                                  <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                                                                                </Assign.Value>
+                                                                              </Assign>
+                                                                              <Assign DisplayName="Assign an empty string to the 'out_ExceptionOwner' variable." sap2010:WorkflowViewState.IdRef="Assign_47">
+                                                                                <Assign.To>
+                                                                                  <OutArgument x:TypeArguments="x:String">[out_ExceptionOwner]</OutArgument>
+                                                                                </Assign.To>
+                                                                                <Assign.Value>
+                                                                                  <InArgument x:TypeArguments="x:String">[""]</InArgument>
+                                                                                </Assign.Value>
+                                                                              </Assign>
+                                                                              <Assign DisplayName="Assign the value &quot;Pending PM Approval&quot; to the 'out_ApprovalStatus' variable." sap2010:WorkflowViewState.IdRef="Assign_48">
+                                                                                <Assign.To>
+                                                                                  <OutArgument x:TypeArguments="x:String">[out_ApprovalStatus]</OutArgument>
+                                                                                </Assign.To>
+                                                                                <Assign.Value>
+                                                                                  <InArgument x:TypeArguments="x:String">["Pending PM Approval"]</InArgument>
+                                                                                </Assign.Value>
+                                                                              </Assign>
+                                                                              <ui:LogMessage DisplayName="Log a message with the specified invoice details and approval status." sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[String.Format(&quot;MATCHED | Invoice={0} | PO={1} | Invoice Amount={2} | PO Qty={3} | GRN Qty={4} | Unit Price={5} | Approval Status={6}&quot;, in_InvoiceReference, in_PONumber, in_InvoiceAmount.ToString(), in_POQty.ToString(), in_GRNQty.ToString(), in_InvoiceUnitPrice.ToString(), out_ApprovalStatus)]"/>
+                                                                            </Sequence>
+                                                                            </Sequence>
+                                                                        </Sequence>
+                                                                      </If.Else>
+                                                                    </If>
+                                                                  </Sequence>
+                                                                </Sequence>
+                                                              </If.Else>
+                                                            </If>
+                                                          </Sequence>
+                                                        </Sequence>
+                                                      </Sequence>
+                                                    </If.Else>
+                                                  </If>
+                                                </Sequence>
+                                              <If Condition="[out_MatchStatus = &quot;MATCHED&quot;]" DisplayName="Set Calc Check"><If.Then><Sequence DisplayName="Set Calc Check - True"><Assign DisplayName="Calculation Check Passed"><Assign.To><OutArgument x:TypeArguments="x:String">[out_CalcCheck]</OutArgument></Assign.To><Assign.Value><InArgument x:TypeArguments="x:String">["PASS"]</InArgument></Assign.Value></Assign></Sequence></If.Then><If.Else><Sequence DisplayName="Set Calc Check - False"/></If.Else></If></Sequence></Activity>

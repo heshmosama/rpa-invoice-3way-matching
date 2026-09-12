@@ -1,0 +1,624 @@
+{
+  "Main.xaml": [
+    {
+      "FullName": null,
+      "ActivityIdRef": "ConnectorActivity_2",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ConnectionId",
+          "RenderType": 0,
+          "Widget": "SolutionResource",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "model",
+          "RenderType": 0,
+          "Widget": "AutoCompleteForExpression",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "prompt",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "instruction",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "out_text",
+          "RenderType": 1,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "DownloadAttachmentsConnections_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "FilterByFileNames",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "ExcludeInlineAttachments",
+          "RenderType": 0,
+          "Widget": "NullableBoolean",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Email",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "DestinationPath",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "ConflictResolution",
+          "RenderType": 0,
+          "Widget": "Dropdown",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "NewResult",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "ForEach`1_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "Values",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "ForEachRow_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "DataTable",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "NewEmailReceived_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ConnectionId",
+          "RenderType": 0,
+          "Widget": "SolutionResource",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "FolderMetadata",
+          "RenderType": 0,
+          "Widget": "Browser",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "WithAttachmentsOnly",
+          "RenderType": 0,
+          "Widget": "Toggle",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "IncludeAttachments",
+          "RenderType": 0,
+          "Widget": "NullableBoolean",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Result",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "PathExists_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "Path",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Exists",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Resource",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "ReadPDFText_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "Text",
+          "RenderType": 1,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "FileName",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "ReadRangeConnections`1_2",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ConnectionId",
+          "RenderType": 0,
+          "Widget": "SolutionResource",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "ItemMetadata",
+          "RenderType": 0,
+          "Widget": "Browser",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Range",
+          "RenderType": 0,
+          "Widget": "AutoCompleteForExpression",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Result",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "ReadRangeConnections`1_3",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ConnectionId",
+          "RenderType": 0,
+          "Widget": "SolutionResource",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Range",
+          "RenderType": 0,
+          "Widget": "AutoCompleteForExpression",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "ItemMetadata",
+          "RenderType": 0,
+          "Widget": "Browser",
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "ReadRangeConnections`1_4",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ItemMetadata",
+          "RenderType": 0,
+          "Widget": "Browser",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Range",
+          "RenderType": 0,
+          "Widget": "AutoCompleteForExpression",
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "UploadFilesConnections_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ConnectionId",
+          "RenderType": 0,
+          "Widget": "SolutionResource",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "MultipleFilesToUpload",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "SaveToFolderMetadata",
+          "RenderType": 0,
+          "Widget": "Browser",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "ConflictResolution",
+          "RenderType": 0,
+          "Widget": "Dropdown",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "AllResults",
+          "RenderType": 2,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    },
+    {
+      "FullName": null,
+      "ActivityIdRef": "WriteRowConnections_1",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ConnectionId",
+          "RenderType": 0,
+          "Widget": "SolutionResource",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "ItemMetadata",
+          "RenderType": 0,
+          "Widget": "Browser",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "Range",
+          "RenderType": 0,
+          "Widget": "AutoCompleteForExpression",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "DataType",
+          "RenderType": 0,
+          "Widget": "Dropdown",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "HasHeaders",
+          "RenderType": 0,
+          "Widget": "NullableBoolean",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_20",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_21",
+          "RenderType": 1,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_22",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_25",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_26",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_27",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_28",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_29",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_30",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_31",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_32",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_33",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_34",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_35",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_36",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_37",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_38",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_39",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_40",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_41",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_42",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_43",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_44",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_45",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_46",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_47",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_48",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_49",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_50",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_51",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_52",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_53",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_55",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_56",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_54",
+          "RenderType": 0,
+          "Widget": "TextComposer",
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_24",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        },
+        {
+          "PropertyName": "dynamicField_AddRangeProperty_23",
+          "RenderType": 3,
+          "Widget": null,
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    }
+  ],
+  "CheckDuplicate.xaml": [],
+  "ExtractInvoice.xaml": [
+    {
+      "FullName": null,
+      "ActivityIdRef": "ConnectorActivity_2",
+      "IsCollapsed": false,
+      "IsEnabled": true,
+      "RequiresConfiguration": false,
+      "PropertiesBackendMetadata": [
+        {
+          "PropertyName": "ConnectionId",
+          "RenderType": 0,
+          "Widget": "SolutionResource",
+          "Conversion": null
+        }
+      ],
+      "Status": 0
+    }
+  ],
+  "WriteMatchedResult.xaml": [],
+  "MatchRules.xaml": [],
+  "ProcessInvoice.xaml": [],
+  "LookupPO.xaml": [],
+  "LookupGRN.xaml": [],
+  "RegisterPendingDriveFile.xaml": [],
+  "CheckRpaDuplicate.xaml": []
+}
